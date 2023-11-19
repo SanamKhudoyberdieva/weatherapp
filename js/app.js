@@ -27,12 +27,12 @@
           "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/minsk?unitGroup=metric&key=HKQEKXGN484MCGGWXWHVV2UJP&contentType=json",
         );
         console.log("res", res);
-        // res.data.days.map((x, idx) => {
-        //   if(idx === 1) {
-        //     return <div>first element</div>
-        //   }
-        //   return <div>other element</div>
-        // })
+        res.data.days.map((x, idx) => {
+          if(idx === 1) {
+            return <div class="today forecast"></div>
+          }
+          return <div class="forecast"></div>
+        })
         displayWeatherData(res.data);
       } catch (error) {
         console.log(error);
