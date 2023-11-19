@@ -1,15 +1,17 @@
 (function ($, document, window) {
   $(document).ready(function () {
+    const todayForecast = $(".today.forecast");
+    const forecastHeader = todayForecast.find(".forecast-header");
+    const forecastContent = todayForecast.find(".forecast-content");
+
+    console.log("todayForecast", todayForecast);
+    console.log("forecastHeader", forecastHeader);
+    console.log("forecastContent", forecastContent);
 
     function displayWeatherData(weatherData) {
-      const todayForecast = $(".today.forecast");
-      const forecastHeader = todayForecast.find(".forecast-header");
-      const forecastContent = todayForecast.find(".forecast-content");
-
-      forecastHeader.find(".day").text(weatherData.days[0].weekday);
+      forecastHeader.find(".date").text(weatherData.days[0].weekday);
       forecastHeader.find(".date").text(weatherData.days[0].datetime);
-      forecastContent.find(".location").text(weatherData.data.address);
-
+      forecastContent.find(".location").text(weatherData.address);
       // const apiItemsContainer = document.getElementById('apiItemsContainer');
       // apiItemsContainer.innerHTML = `<h3>${weatherData.location.name}</h3><p>${weatherData.days[0].description}</p>`;
     }
@@ -20,12 +22,18 @@
           "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/minsk?unitGroup=metric&key=HKQEKXGN484MCGGWXWHVV2UJP&contentType=json",
         );
         console.log("res", res);
+        res.map((x, idx) => {
+          if(idx === 1) {
+            return <div>first element</div>
+          }
+          return <div>other element</div>
+        })
+        displayWeatherData(res.data);
       } catch (error) {
         console.log(error);
       }
     }
     fetchWeatherData();
-    displayWeatherData();
 
     // Cloning main navigation for mobile menu
     $(".mobile-navigation").append($(".main-navigation .menu").clone());
