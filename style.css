@@ -1264,6 +1264,7 @@ form textarea {
         padding-top: 30px;
         padding-bottom: 30px; }
       .forecast-container .forecast.today .location {
+        text-transform: capitalize;
         font-size: 18px;
         font-size: 1.2857142857em;
         font-weight: 400; }
