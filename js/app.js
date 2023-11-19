@@ -1,5 +1,19 @@
 (function ($, document, window) {
   $(document).ready(function () {
+
+    function displayWeatherData(weatherData) {
+      const todayForecast = $(".today.forecast");
+      const forecastHeader = todayForecast.find(".forecast-header");
+      const forecastContent = todayForecast.find(".forecast-content");
+
+      forecastHeader.find(".day").text(weatherData.days[0].weekday);
+      forecastHeader.find(".date").text(weatherData.days[0].datetime);
+      forecastContent.find(".location").text(weatherData.data.address);
+
+      // const apiItemsContainer = document.getElementById('apiItemsContainer');
+      // apiItemsContainer.innerHTML = `<h3>${weatherData.location.name}</h3><p>${weatherData.days[0].description}</p>`;
+    }
+
     async function fetchWeatherData() {
       try {
         let res = await axios.get(
@@ -11,6 +25,7 @@
       }
     }
     fetchWeatherData();
+    displayWeatherData();
 
     // Cloning main navigation for mobile menu
     $(".mobile-navigation").append($(".main-navigation .menu").clone());
